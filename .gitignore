@@ -6,7 +6,6 @@
 *.coffee
 *.crx
 *.gz
-*.js
 *.log
 *.old
 *.sh
