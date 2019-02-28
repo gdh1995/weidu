@@ -2,6 +2,9 @@
 =============================
 基于原名为“微度新标签页 (X New Tab Page)”的Chrome扩展修改而来。
 
+[visit it on Chrome Web Store](https://chrome.google.com/webstore/detail/微度新标签页修改版/hdnehngglnbnehkfcidabjckinphnief)
+
+
 __微度新标签页 (X New Tab Page):__
 * 一款基于Html5的Chrome浏览器扩展程序。
   它提供了网站快速拨号、网站云添加、数据云备份等功能来增强 Chrome
