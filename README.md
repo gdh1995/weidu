@@ -37,7 +37,7 @@ __已知问题__
 __更新日志__
 
 修改版: 4.8.3 mod
-* 像`Vomnibar Page for Vimium C`一样，提供了可供Vimium C使用的Vomnibar页面，
+* 提供了可供Vimium C使用的Vomnibar页面，
 
 修改版: 4.8.2 mod
 * 无功能性改动，只是将版本号里的`4.83`修复成`4.8.2`
