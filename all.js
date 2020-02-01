@@ -1930,7 +1930,7 @@ _Box.prototype = {
 				+ (self.boxOptions.isFixed ? ' boxFixed' : '') + (self.boxOptions.isApp.length == 32 ? ' chromeApp' : '')
 				+ '" id="appBox_' + self.boxOptions.id + '" appType="' + (self.boxOptions.appType || '')
 				+ '" url="' + self.getUrl() + '" appId="' + self.boxOptions.isApp
-				+ '"><div class="boxLogo" notes="' + self.boxOptions.title + '"></div>'
+				+ '"><div class="boxLogo" role="link" notes="' + self.boxOptions.title + '"></div>'
 				+ (!self.boxOptions.title ? '' : '<div class="boxTitle"><a data-vim-url="' + self.getUrl()
 					+ '">' + self.boxOptions.title + '</a></div>')
 				+ '<button class="boxClose' + (self.boxOptions.isFixed ? ' hide' : '')
@@ -1939,7 +1939,7 @@ _Box.prototype = {
 			boxItem = $('<div class="appBox ' + self.boxOptions.type + (self.boxOptions.isNew ? ' new' : '')
 				+ (self.boxOptions.isFixed ? ' boxFixed' : '')
 				+ '" id="appBox_' + self.boxOptions.id + '" url="' + self.getUrl()
-				+ '"><div class="boxLogo" notes="' + self.boxOptions.title + '"></div>'
+				+ '"><div class="boxLogo" role="link" notes="' + self.boxOptions.title + '"></div>'
 				+ (!self.boxOptions.title ? '' : '<div class="boxTitle"><a data-vim-url="' + self.getUrl()
 					+ '">' + self.boxOptions.title + '</a></div>')
 				+ '<button class="boxClose' + (self.boxOptions.isFixed ? ' hide' : '')
