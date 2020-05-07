@@ -975,7 +975,6 @@ var oauth = {
 				returnStatus = false
 			} else {
 				var curOTime = PDI.get('setup', 'OTime');
-				var curMTime = PDI.get('setup', 'MTime');
 				var classifications = PDI.get("classifications");
 				storage.relative = false;
 				storage.clear(['dialBoxes', 'setup', 'privateSetup', 'skins', 'weather', 'classifications', 'oauthData', 'usedWallpaper', 'iframeDialbox']);
@@ -984,14 +983,21 @@ var oauth = {
 				});
 				$.each(result, function (k, v) {
 					if (k == "cache" || k == "usedWallpaper" || k == "iframeDialbox" || k == "setup" || k == "classifications" || k.indexOf("privateSetup") > -1) {
-						PDI.set(k, '', JSON.parse(v))
+						v = JSON.parse(v)
+						if (k.indexOf("privateSetup") >= 0) {
+							$.extend(v, _config.privateSetup);
+							v.__proto__ = null
+						}
+						PDI.set(k, '', v)
 					} else if (k.indexOf('dialBoxes') > -1 || k.indexOf('skins') > -1) {
 						$.each(urlImgList, function (i, n) {
 							if (urlImg != n) {
 								v = v.replace(new RegExp(n, 'g'), urlImg)
 							}
 						});
-						var v = JSON.parse(v);
+						v = v.replace(/\bjs\/plugin\b/g, "plugin")
+						v = v.replace(/\bplugin\/app\/img\/skin_0/g, "plugin/img")
+						v = JSON.parse(v);
 						PDI.set(k, '', v)
 					}
 				});
@@ -3547,13 +3553,15 @@ priv = null;
 
 var installWall = function(skin, wallpaperUrl) {
 var style = PDI.getSkin(skin, 'style').background, st = PDI.getStyle('background'), w, h,
+resizeWallpaper,
 wall = $('.wallpaper').css('backgroundColor', style.backgroundColor).css(st);
 if (!wallpaperUrl) {
 	wallpaperUrl = style.backgroundImage.match(/url\((.*)\)/)[1];
 }
+window.onresize = onResize
 if (wallpaperUrl && st.backgroundSize == 'auto 100%' && st.backgroundPosition == '50% 50%') {
 } else {
-	wall.css("backgroundImage", wallpaperUrl);
+	wall.css("backgroundImage", "url(" + wallpaperUrl + ")");
 	return;
 }
 var bgImg = new Image();
@@ -3564,7 +3572,7 @@ $('.wallpaper').css("backgroundImage", "url(" + this.src + ")");
 if (w <= h) {
 	st.backgroundPosition = '50% 0px';
 }
-var onresize = w <= h ? function () {
+resizeWallpaper = w <= h ? function () {
 	st.backgroundSize = 'auto ' + oHeight + 'px';
 	$('.wallpaper').css(st);
 } : function() {
@@ -3588,14 +3596,14 @@ var onresize = w <= h ? function () {
 		$('.wallpaper').css(st);
 	}
 }
-onresize();
-window.onresize = function() {
+resizeWallpaper();
+};
+function onResize() {
 	var h = window.innerHeight;
 	if (window.innerWidth == oWidth && h <= oHeight && h > oHeight - 45) return;
 	oWidth = window.innerWidth;
 	oHeight = window.innerHeight;
-	onresize();
-};
+	resizeWallpaper && resizeWallpaper();
 };
 };
 (function() {

@@ -258,11 +258,14 @@ var setup = {
 					if (oauth.save(obj)) {
 						oauth.updateMsgId();
 						oauth.synchronize();
+						setTimeout(function () { window.location.reload(true); }, 200);
 					}
 				};
 				var data;
 				try {
-					data = JSON.parse(this.result);
+					try {
+						data = JSON.parse(this.result);
+					} catch (e1) {}
 					if (data == undefined) {
 						return $.post(urlImg + "weidu/wc.json.php", {
 							a : "import",
@@ -279,7 +282,6 @@ var setup = {
 								return false
 							}
 							oriUpdateConf(resultObj);
-							setTimeout(function () { window.location.reload(true); }, 200);
 						});
 					}
 					var ver = data.confver;
@@ -291,10 +293,10 @@ var setup = {
 						for (var i in data) {
 							db.setItem(i, JSON.stringify(data[i]));
 						}
+						setTimeout(function () { window.location.reload(true); }, 200);
 					} else {
 						oriUpdateConf(data);
 					}
-					setTimeout(function () { window.location.reload(true); }, 200);
 				} finally {
 				}
 			};
