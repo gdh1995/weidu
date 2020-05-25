@@ -1936,8 +1936,9 @@ _Box.prototype = {
 				+ (self.boxOptions.isFixed ? ' boxFixed' : '') + (self.boxOptions.isApp.length == 32 ? ' chromeApp' : '')
 				+ '" id="appBox_' + self.boxOptions.id + '" appType="' + (self.boxOptions.appType || '')
 				+ '" url="' + self.getUrl() + '" appId="' + self.boxOptions.isApp
+				+ '" role="link" data-vim-text="' + self.boxOptions.title + '" data-vim-url="' + self.getUrl()
 				+ '"><div class="boxLogo" notes="' + self.boxOptions.title
-				+ '" role="link" data-vim-text="' + self.boxOptions.title + '" data-vim-url="' + self.getUrl() + '"></div>'
+				+ '"></div>'
 				+ (!self.boxOptions.title ? '' : '<div class="boxTitle"><a aria-hidden>' + self.boxOptions.title + '</a></div>')
 				+ '<button class="boxClose' + (self.boxOptions.isFixed ? ' hide' : '')
 				+ '"></button></div>');
@@ -1945,9 +1946,8 @@ _Box.prototype = {
 			boxItem = $('<div class="appBox ' + self.boxOptions.type + (self.boxOptions.isNew ? ' new' : '')
 				+ (self.boxOptions.isFixed ? ' boxFixed' : '')
 				+ '" id="appBox_' + self.boxOptions.id + '" url="' + self.getUrl()
-				+ '" role="link" data-vim-url="' + self.getUrl()
-				+ '"><div class="boxLogo" notes="' + self.boxOptions.title
-				+ '" role="link" data-vim-text="' + self.boxOptions.title + '" data-vim-url="' + self.getUrl() + '"></div>'
+				+ '" role="link" data-vim-text="' + self.boxOptions.title + '" data-vim-url="' + self.getUrl()
+				+ '"><div class="boxLogo"></div>'
 				+ (!self.boxOptions.title ? '' : '<div class="boxTitle"><a aria-hidden>' + self.boxOptions.title + '</a></div>')
 				+ '<button class="boxClose' + (self.boxOptions.isFixed ? ' hide' : '')
 				+ '"></button><button class="boxEdit ' + (self.boxOptions.isFixed ? ' hide' : '') + '" title="' + getI18nMsg('editDialbox')
