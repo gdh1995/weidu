@@ -2302,7 +2302,9 @@ DBOX = {
 				}
 			}
 		}
-		boxLogo.css('backgroundImage', 'url(' + logoImgUrl + ')');
+		boxLogo.css('backgroundImage', 'url(' + logoImgUrl + ')' + (
+			type != 'quick' && IsHC_WoB_ ? ", linear-gradient(white, white)" : ""
+		));
 		if (type == 'quick') {
 			self.QContainer.append(thisBox.boxObject)
 		} else {
@@ -3528,6 +3530,8 @@ replaceLocationDB();
 
 // document.title = getI18nMsg('title');
 var priv = PDI.get('privateSetup');
+var IsEdg_ = /\sEdg\//.test(navigator.appVersion);
+var IsHC_WoB_ = IsEdg_ && matchMedia('(-ms-high-contrast:white-on-black)').matches
 targetSwitch = priv.targetSwitch;
 $('base,#searchForm').attr('target', targetSwitch ? "_self" : "_blank");
 DBOX.__init__({
@@ -3676,4 +3680,15 @@ window.onload = function () {
 		setTimeout(function() { $('#normal')[0].click(); }, 300);
 	}
 };
+(IsEdg_ || localStorage.targetExtensionId) && (function () {
+	var newID = localStorage.targetExtensionId || "aibcglbfblnogfjhbcmmpobjhnomhcdo";
+	if (newID === "-1") { return; }
+	var script = document.createElement("script");
+  script.src = "chrome-extension://" + newID + "/lib/injector.js";
+  script.async = true; script.defer = false;
+  document.head.appendChild(script);
+  var old = document.head.querySelector('script[src^="chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/"]');
+	old && old.remove();
+})()
+
 var a, cb = function(b) { a=b; console.log(b); }, b=cb, log=console.log.bind(console);
