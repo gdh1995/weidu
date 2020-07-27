@@ -3127,7 +3127,7 @@ DBOX = {
 			return;
 		}
 		if (self.pageSwitcher == '') {
-			self.pageSwitcher = $('<a class="pageSwitcher up" data-page="pre"></a><a class="pageSwitcher down" data-page="next"></a>');
+			self.pageSwitcher = $('<a class="pageSwitcher up" data-page="pre" rel="prev"></a><a class="pageSwitcher down" data-page="next" rel="next"></a>');
 			self.pageSwitcher.bind('click', function () {
 				self.loadBoxes($(this).attr('data-page'))
 			}).insertBefore(parent);
