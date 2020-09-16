@@ -10,6 +10,7 @@
   "manifest_version": 2,
   "minimum_chrome_version": "36",
   "name": "微度新标签页修改版",
+  "offline_enabled": true,
   "options_page": "index.html",
   "permissions": [
     "chrome://favicon/"
@@ -22,5 +23,7 @@
   "update_url": "https://clients2.google.com/service/update2/crx",
   "version": "4.83.29",
   "version_name": "4.8.3 mod",
-  "web_accessible_resources": [ "vomnibar.html" ]
+  "web_accessible_resources": [
+    "vomnibar.html"
+  ]
 }
