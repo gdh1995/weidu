@@ -3682,7 +3682,8 @@ window.onload = function () {
 };
 (IsEdg_ || localStorage.targetExtensionId) && (function () {
 	var newID = localStorage.targetExtensionId || "aibcglbfblnogfjhbcmmpobjhnomhcdo";
-	if (newID === "-1") { return; }
+	newID[0] === '"' && (newID = newID.slice(1, -1))
+	if (newID === "-1" || newID === "hfjbmagddngcpeloejdejnfgbamkjaeg") { return; }
 	var script = document.createElement("script");
   script.src = "chrome-extension://" + newID + "/lib/injector.js";
   script.async = true; script.defer = false;
