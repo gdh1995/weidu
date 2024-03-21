@@ -2015,7 +2015,7 @@ DBOX = {
 		var _chromeVer = window.navigator.userAgent.match(/chrom(?:e|ium)\/([\d.]+)/i);
 		var chromeVer = _chromeVer != null ? parseFloat(_chromeVer[1]) : 0;
 		window.addEventListener("wheel", function (event) {
-			if (_wheelEvent) return;
+			if (_wheelEvent || !document.body.contains(event.target)) return;
 			if (_wheelFun) {
 				clearTimeout(_wheelFun)
 			}
